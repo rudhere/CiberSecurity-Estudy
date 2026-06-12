@@ -265,6 +265,51 @@ label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 4px
 .proc-tree-node.warn { color:var(--amber); }
 .proc-tree-node.norm { color:#adbac7; }
 
+
+/* ── CREDENTIAL INTEL MODULE ────────────────────────────── */
+.ci-user-row { display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;font-size:12px; }
+.ci-user-row:hover { background:var(--panel2); }
+.ci-user-row.selected { background:rgba(248,81,73,.07);border-left:2px solid var(--red); }
+.risk-crit { background:rgba(248,81,73,.2);color:var(--red);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;flex-shrink:0; }
+.risk-alto { background:rgba(240,136,62,.2);color:var(--orange);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;flex-shrink:0; }
+.risk-med  { background:rgba(210,153,34,.2);color:var(--amber);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;flex-shrink:0; }
+.risk-low  { background:rgba(63,185,80,.15);color:var(--green);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;flex-shrink:0; }
+.ci-step-bar { display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--panel); }
+.ci-step { padding:10px 14px;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;display:flex;align-items:center;gap:5px;white-space:nowrap; }
+.ci-step:hover { color:var(--text); }
+.ci-step.ci-done { color:var(--green);border-bottom-color:var(--green); }
+.ci-step.ci-active { color:var(--blue);border-bottom-color:var(--blue); }
+.ci-step.ci-locked { opacity:.4;cursor:not-allowed; }
+.ci-content { padding:18px;overflow-y:auto;flex:1; }
+.breach-card { border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;background:var(--panel2); }
+.breach-card.crit { border-left:3px solid var(--red);background:rgba(248,81,73,.05); }
+.breach-card.warn { border-left:3px solid var(--amber);background:rgba(210,153,34,.04); }
+.breach-card.info { border-left:3px solid var(--blue);background:rgba(88,166,255,.04); }
+.breach-card.ok   { border-left:3px solid var(--green);background:rgba(63,185,80,.04); }
+.ci-platform-hdr { display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border); }
+.ci-logo { font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase; }
+.ci-logo-xdr   { background:rgba(229,57,53,.2);color:#ef9a9a; }
+.ci-logo-axur  { background:rgba(255,152,0,.2);color:#ffb74d; }
+.ci-logo-cloud { background:rgba(33,150,243,.2);color:#90caf9; }
+.ci-logo-hibp  { background:rgba(156,39,176,.2);color:#ce93d8; }
+.ci-logo-act   { background:rgba(63,185,80,.2);color:#81c784; }
+.ci-field { margin-bottom:10px; }
+.ci-field label { font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:.05em;display:block;margin-bottom:3px; }
+.ci-field .val { font-size:12px;color:var(--text);font-family:'IBM Plex Mono',monospace; }
+.ci-field .val.danger { color:var(--red); }
+.ci-field .val.warn   { color:var(--amber); }
+.ci-field .val.ok     { color:var(--green); }
+.ci-search-box { display:flex;gap:8px;margin-bottom:14px; }
+.ci-search-box input { flex:1;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:#ffb74d;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 12px;outline:none; }
+.ci-search-box input:focus { border-color:#ffb74d; }
+.ci-action-item { display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:7px;margin-bottom:6px; }
+.ci-action-item.urgent   { background:rgba(248,81,73,.08);border:1px solid rgba(248,81,73,.2); }
+.ci-action-item.high     { background:rgba(240,136,62,.08);border:1px solid rgba(240,136,62,.2); }
+.ci-action-item.medium   { background:rgba(210,153,34,.08);border:1px solid rgba(210,153,34,.2); }
+.ci-action-item.done     { background:rgba(63,185,80,.07);border:1px solid rgba(63,185,80,.2); }
+.ci-action-num { width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0; }
+.training-banner { background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.2);border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:11px;color:var(--blue);display:flex;align-items:center;gap:8px; }
+
 </style>
 </head>
 <body>
@@ -308,6 +353,7 @@ label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 4px
     <button class="nav-btn" onclick="goto('xdr')" id="nb-xdr"><span class="icon">🔭</span> Trend Micro XDR</button>
     <button class="nav-btn" onclick="goto('qradar')" id="nb-qradar"><span class="icon">📡</span> IBM QRadar SIEM</button>
     <button class="nav-btn" onclick="goto('tanium')" id="nb-tanium"><span class="icon">🖥</span> Tanium Threat Resp.</button>
+    <button class="nav-btn" onclick="goto('credintel')" id="nb-credintel"><span class="icon">🔑</span> Vazamento de Contas</button>
     <div class="nav-section">Resposta</div>
     <button class="nav-btn" onclick="goto('playbook')" id="nb-playbook"><span class="icon">📋</span> Playbooks CSIRT</button>
     <button class="nav-btn" onclick="goto('report')" id="nb-report"><span class="icon">📄</span> Relatório de Incidente</button>
@@ -747,6 +793,41 @@ label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 4px
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════════
+       VIEW: CREDENTIAL INTEL — INVESTIGAÇÃO DE VAZAMENTO
+  ═══════════════════════════════════════════════════════════════ -->
+  <div id="view-credintel" class="view">
+    <div class="training-banner">
+      🛡️ <strong>Ambiente de Treinamento</strong> — Todos os usuários, domínios e dados de vazamento nesta aba são <strong>completamente fictícios</strong>, criados exclusivamente para fins educacionais. Empresa simulada: CorpDemo S.A. | Domínio: @corpdemo.com.br
+    </div>
+    <div style="display:grid;grid-template-columns:280px 1fr;height:calc(100vh - 175px);gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+
+      <!-- LEFT: User list -->
+      <div style="display:flex;flex-direction:column;background:var(--panel);border-right:1px solid var(--border);">
+        <div class="tool-header" style="flex-direction:column;align-items:flex-start;gap:4px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="tool-logo" style="background:rgba(248,81,73,.2);color:#ef9a9a;">CorpDemo</span>
+            <span style="font-size:11px;font-weight:600;">Monitoramento de Contas</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);">5 usuários sob análise · domínio @corpdemo.com.br</div>
+        </div>
+        <div style="overflow-y:auto;flex-grow:1;" id="ci-user-list"></div>
+        <div style="padding:10px 12px;border-top:1px solid var(--border);">
+          <button onclick="ciGenRandom()" class="btn btn-ghost" style="width:100%;font-size:10px;padding:5px;">⚡ Gerar Usuário Aleatório</button>
+        </div>
+      </div>
+
+      <!-- RIGHT: Investigation wizard -->
+      <div style="display:flex;flex-direction:column;background:var(--panel2);overflow:hidden;" id="ci-right">
+        <div style="text-align:center;padding:50px 20px;color:var(--muted);">
+          <div style="font-size:36px;margin-bottom:12px;">🔑</div>
+          <p style="font-size:13px;font-weight:500;margin-bottom:6px;">Selecione um usuário para iniciar a investigação</p>
+          <p style="font-size:11px;">Fluxo: XDR → AXUR → Cloud Exposure → HaveIBeenPwned → Ações</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </div><!-- end .content -->
 </main>
 
@@ -802,7 +883,7 @@ function goto(v) {
   document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));
   document.getElementById('view-'+v).classList.add('active');
   document.getElementById('nb-'+v).classList.add('active');
-  const titles = {xdr:'Trend Micro XDR Workbench',qradar:'IBM QRadar SIEM — Offense Manager',tanium:'Tanium Threat Response — Endpoint EDR',dash:'Dashboard SOC',sim:'Simulação de Ataque APT',processes:'Explorador de Processos / Hunting',term:'Terminal Forense',malware:'Malware Sandbox & Análise',concepts:'Conceitos & MITRE ATT&CK',quiz:'Quiz & Certificação',playbook:'Playbooks CSIRT',report:'Relatório de Incidente'};
+  const titles = {credintel:'Investigação de Vazamento de Credenciais',xdr:'Trend Micro XDR Workbench',qradar:'IBM QRadar SIEM — Offense Manager',tanium:'Tanium Threat Response — Endpoint EDR',dash:'Dashboard SOC',sim:'Simulação de Ataque APT',processes:'Explorador de Processos / Hunting',term:'Terminal Forense',malware:'Malware Sandbox & Análise',concepts:'Conceitos & MITRE ATT&CK',quiz:'Quiz & Certificação',playbook:'Playbooks CSIRT',report:'Relatório de Incidente'};
   document.getElementById('page-title').textContent = titles[v]||v;
 }
 
@@ -2468,51 +2549,82 @@ function tanDeleteFile(epId){
   modal('Artefato Removido','Arquivo malicioso deletado via Tanium. Ação registrada no audit log do endpoint para evidência forense. Verifique se há cópias em outros diretórios com a query de hunt de hashes.','🗑',20);
 }
 
-// ── Quiz builders ──────────────────────────────────────────
+// ── Quiz builders — FIXED stable container IDs ─────────────
 const SPEC_QUIZ_STATE = {};
+
+function _getQuestions(ns, id){
+  if(ns==='ci') return (CI_USERS.find(u=>u.id===id)||{}).quiz||[];
+  if(ns==='xdr') return (XDR_ALERTS.find(a=>a.id===id)||{}).quiz||[];
+  if(ns==='qr')  return (QR_OFFENSES.find(o=>o.id===id)||{}).quiz||[];
+  if(ns==='tan') return (_TAN_QUIZ_MAP[id]||[]);
+  return [];
+}
+
 function buildSpecQuiz(ns, id, questions){
-  const key=ns+id;
+  const key = ns + String(id).replace(/[^a-z0-9]/gi,'_');
   if(!SPEC_QUIZ_STATE[key]) SPEC_QUIZ_STATE[key]={idx:0,answered:false};
-  const st=SPEC_QUIZ_STATE[key];
-  if(st.idx>=questions.length) return `<div class="tip-box">✅ Todas as questões desta investigação respondidas!</div>`;
-  const q=questions[st.idx];
-  return `<div class="card" style="padding:14px;background:var(--bg);">
-    <p style="font-size:12px;font-weight:500;line-height:1.6;margin-bottom:10px;">${q.q}</p>
-    ${q.opts.map((o,i)=>`<button id="sqo-${key}-${i}" class="q-opt" onclick="answerSpecQuiz('${ns}','${id}',${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
-    <div id="sqe-${key}" style="display:none;" class="tip-box" style="margin-top:8px;font-size:12px;"></div>
+  const st = SPEC_QUIZ_STATE[key];
+  if(!questions || st.idx>=questions.length)
+    return `<div id="sqwrap-${key}" class="tip-box">✅ Todas as questões desta investigação respondidas! +XP conquistado.</div>`;
+  const q = questions[st.idx];
+  const qTotal = questions.length;
+  return `<div id="sqwrap-${key}" class="card" style="padding:14px;background:var(--bg);border-color:var(--border2);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <span style="font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:600;">🎯 Lab — Questão ${st.idx+1}/${qTotal}</span>
+      <span style="font-size:10px;color:var(--muted);">${Array(qTotal).fill(0).map((_,i)=>`<span style="display:inline-block;width:7px;height:7px;border-radius:50%;margin:0 2px;background:${i<st.idx?'var(--green)':i===st.idx?'var(--blue)':'var(--border2)'};"></span>`).join('')}</span>
+    </div>
+    <p style="font-size:12px;font-weight:500;line-height:1.6;margin-bottom:10px;color:var(--text);">${q.q}</p>
+    ${q.opts.map((o,i)=>`<button id="sqo-${key}-${i}" class="q-opt" onclick="answerSpecQuiz('${ns}','${id}',${i},'${key}')">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
+    <div id="sqe-${key}" style="display:none;margin-top:8px;" class="tip-box"></div>
     <div style="display:flex;justify-content:flex-end;margin-top:8px;">
-      <button id="sqn-${key}" class="btn btn-green" style="display:none;font-size:10px;padding:4px 12px;" onclick="nextSpecQuiz('${ns}','${id}')">Próxima →</button>
+      <button id="sqn-${key}" class="btn btn-green" style="display:none;font-size:10px;padding:4px 14px;"
+        onclick="nextSpecQuiz('${ns}','${id}','${key}')">Próxima questão →</button>
     </div>
   </div>`;
 }
-function answerSpecQuiz(ns, id, chosen){
-  const key=ns+id; const st=SPEC_QUIZ_STATE[key];
-  if(st.answered) return; st.answered=true;
-  const questions = ns==='xdr'?XDR_ALERTS.find(a=>a.id===id).quiz:ns==='qr'?QR_OFFENSES.find(o=>o.id===id).quiz:[];
-  const q=questions[st.idx];
-  document.querySelectorAll(`[id^="sqo-${key}-"]`).forEach((b,i)=>{
-    b.disabled=true;
-    if(i===q.ans) b.classList.add('ok'); else if(i===chosen) b.classList.add('bad');
-  });
-  const eEl=document.getElementById('sqe-'+key);
-  eEl.style.display='block';
-  eEl.innerHTML='<strong>'+(chosen===q.ans?'✓ Correto! ':'✗ Incorreto — ')+'</strong>'+q.exp;
+
+function answerSpecQuiz(ns, id, chosen, key){
+  if(!key) key = ns + String(id).replace(/[^a-z0-9]/gi,'_');
+  const st = SPEC_QUIZ_STATE[key];
+  if(!st || st.answered) return;
+  st.answered = true;
+  const questions = _getQuestions(ns, id);
+  if(!questions.length) return;
+  const q = questions[st.idx];
+  // Mark option buttons
+  for(let i=0;i<q.opts.length;i++){
+    const btn = document.getElementById(`sqo-${key}-${i}`);
+    if(!btn) continue;
+    btn.disabled = true;
+    if(i===q.ans) btn.classList.add('ok');
+    else if(i===chosen) btn.classList.add('bad');
+  }
+  // Show explanation
+  const eEl = document.getElementById('sqe-'+key);
+  if(eEl){
+    eEl.style.display='block';
+    eEl.innerHTML='<strong>'+(chosen===q.ans?'✓ Correto! ':'✗ Incorreto. Resposta correta: '+String.fromCharCode(65+q.ans)+'. ')+'</strong>'+q.exp;
+  }
   if(chosen===q.ans) addXP(q.xp||30);
-  const nBtn=document.getElementById('sqn-'+key);
-  if(nBtn && st.idx<questions.length-1) nBtn.style.display='block';
-}
-function nextSpecQuiz(ns,id){
-  const key=ns+id; const st=SPEC_QUIZ_STATE[key];
-  st.idx++; st.answered=false;
-  const questions = ns==='xdr'?XDR_ALERTS.find(a=>a.id===id).quiz:ns==='qr'?QR_OFFENSES.find(o=>o.id===id).quiz:[];
-  if(!questions) return;
-  const container = ns==='xdr'?document.getElementById('xdr-detail'):document.getElementById('qr-detail');
-  if(container){
-    const quizDiv=container.querySelectorAll('.card');
-    const last=quizDiv[quizDiv.length-1];
-    if(last) last.outerHTML=buildSpecQuiz(ns,id,questions);
+  // Show next button only if more questions
+  if(st.idx < questions.length-1){
+    const nBtn = document.getElementById('sqn-'+key);
+    if(nBtn) nBtn.style.display='block';
   }
 }
+
+function nextSpecQuiz(ns, id, key){
+  if(!key) key = ns + String(id).replace(/[^a-z0-9]/gi,'_');
+  const st = SPEC_QUIZ_STATE[key];
+  if(!st) return;
+  st.idx++; st.answered=false;
+  const questions = _getQuestions(ns, id);
+  const wrap = document.getElementById('sqwrap-'+key);
+  if(wrap) wrap.outerHTML = buildSpecQuiz(ns, id, questions);
+}
+
+const _TAN_QUIZ_MAP = {};
+
 function buildTanQuiz(epId){
   const TANQUIZ={
     ep1:[{q:'O Tanium detectou powershell.exe com "-enc" abrindo lockbit3.exe via Word macro. Qual a sequência CORRETA de ações no Tanium Threat Response?',
@@ -2530,10 +2642,11 @@ function buildTanQuiz(epId){
     ep4:[],ep5:[]
   };
   const qs=TANQUIZ[epId]||[];
+  // register into global map so _getQuestions works
+  if(qs.length) _TAN_QUIZ_MAP[epId]=qs;
   if(!qs.length) return `<div class="tip-box">✅ Endpoint saudável — sem alertas ativos para investigar.</div>`;
   return buildSpecQuiz('tan',epId,qs);
 }
-function answerSpecQuiz_tan(chosen){} // handled by buildSpecQuiz with ns='tan'
 
 
 // ╔══════════════════════════════════════════════════════════╗
@@ -2778,6 +2891,533 @@ function tanGenRandom(){
   modal('Novo Endpoint Alertado!',`Host: ${host}\nIP: ${newEp.ip}\nSeveridade: ${cat.sev}\nTipo: ${cat.types[typeIdx]}\n\nEndpoint adicionado à lista. Clique nele para investigar!`,'⚡',0);
 }
 
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║       CREDENTIAL INTEL MODULE — INVESTIGAÇÃO DE VAZAMENTOS      ║
+// ║       TODOS OS DADOS SÃO 100% FICTÍCIOS — APENAS PARA TREINO    ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const CI_USERS = [
+  {
+    id:'cu1', name:'Carlos Eduardo Menezes', email:'carlos.menezes@corpdemo.com.br',
+    dept:'Financeiro', role:'Analista Financeiro Sênior', risk:'CRÍTICO',
+    xdr:{
+      lastPassChange:'2021-03-15', passAge:1185, riskScore:94,
+      mfa:false, lastLogin:'2024-06-08 02:47 UTC', loginHost:'DESKTOP-FINANCE-01',
+      loginIp:'203.0.113.42', loginGeo:'São Paulo, BR (IP externo suspeito)',
+      recentLogins:[
+        {time:'2024-06-08 02:47',ip:'203.0.113.42',host:'DESKTOP-FINANCE-01',status:'success',geo:'São Paulo, BR (ext.)'},
+        {time:'2024-06-07 08:01',ip:'10.0.5.22',host:'DESKTOP-FINANCE-01',status:'success',geo:'Rede interna'},
+        {time:'2024-06-06 07:55',ip:'10.0.5.22',host:'DESKTOP-FINANCE-01',status:'success',geo:'Rede interna'},
+        {time:'2024-06-05 18:33',ip:'177.92.4.11',host:'N/A',status:'failure',geo:'Rio de Janeiro, BR (ext.)'},
+        {time:'2024-06-05 18:32',ip:'177.92.4.11',host:'N/A',status:'failure',geo:'Rio de Janeiro, BR (ext.)'}
+      ]
+    },
+    axur:{
+      found:true, totalLeaks:4, darkwebMentions:2,
+      leaks:[
+        {db:'ComboList-Forum-BR-2023-05',date:'2023-05',type:'email + senha em texto claro',severity:'crit',detail:'Vazamento de combo list com 8.2M linhas circulando em fórum clandestino. Senha exposta: Car!os_2021#'},
+        {db:'NetCommerce-BR-Dump-2022',date:'2022-11',type:'email + hash bcrypt',severity:'warn',detail:'Loja virtual fictícia Netcommerce.com.br sofreu breach. 1.4M usuários afetados. Hash bcrypt exposto.'},
+        {db:'RedLine-StealerLog-2024-Q1',date:'2024-01',type:'email + senha + cookies de sessão',severity:'crit',detail:'Log de infostealer RedLine. Senha: Car!os_2021# | Browser cookies do Outlook Web Access capturados.'},
+        {db:'HealthDB-Ficticia-2021',date:'2021-08',type:'email + dados cadastrais',severity:'warn',detail:'Plataforma de saúde fictícia. Nome, CPF, email e telefone expostos. Sem senha neste leak.'}
+      ],
+      pastes:[
+        {site:'BreachForums (fictício)',date:'2024-02-14',lines:'1 linha identificada com credencial ativa'},
+        {site:'Telegram @leaksbr_demo (fictício)',date:'2024-03-01',lines:'Credencial confirmada em grupo privado'}
+      ]
+    },
+    cloud:{
+      onedrive:[
+        {item:'Planilha_Folha_Pagamento_2024.xlsx',shared:'Qualquer pessoa com o link',risk:'crit',url:'https://corpdemo-my.sharepoint.com/…'},
+        {item:'Relatório_Custos_Q1_2024.pdf',shared:'Qualquer pessoa com o link',risk:'crit',url:'https://corpdemo-my.sharepoint.com/…'}
+      ],
+      mailRules:[
+        {rule:'Encaminhar tudo para externo',dest:'carlosm2021@tempmail-demo.com',created:'2024-06-08 02:51 UTC',risk:'crit'}
+      ],
+      gdrive:[]
+    },
+    hibp:{
+      breaches:[
+        {name:'ComboList-Forum-Demo-2023',date:'2023-05-12',pwned:true,dataTypes:['Endereços de email','Senhas','Nomes']},
+        {name:'NetCommerce-Demo-2022',date:'2022-11-03',pwned:true,dataTypes:['Endereços de email','Hashes de senha','Telefones']},
+        {name:'HealthDB-Demo-2021',date:'2021-08-22',pwned:true,dataTypes:['Endereços de email','Nomes','Datas de nascimento','CPF (fictício)']},
+        {name:'RedLine-Log-Demo-2024',date:'2024-01-15',pwned:true,dataTypes:['Endereços de email','Senhas em texto claro','Cookies de sessão']}
+      ]
+    },
+    quiz:[
+      {q:'Carlos tem senha com 1.185 dias sem troca (desde 2021) e foi encontrado com a mesma senha em texto claro em 2 vazamentos. Qual a ação MAIS URGENTE?',
+       opts:['Enviar email avisando o usuário para trocar sua senha na próxima semana','Revogar IMEDIATAMENTE todas as sessões ativas, forçar reset de senha e bloquear temporariamente o acesso externo — a senha comprometida em texto claro pode estar sendo usada neste exato momento','Apenas documentar no relatório e aguardar o próximo ciclo de revisão','Pedir para o usuário trocar na próxima reunião de equipe'],
+       ans:1,xp:50,
+       exp:'Senha em texto claro em stealer log = comprometimento ativo. Ação imediata: (1) Revogar todas as sessões (tokens OAuth + cookies) no Azure AD/M365, (2) Forçar password reset, (3) Bloquear IP externo suspeito (203.0.113.42), (4) Investigar a regra de encaminhamento de email criada às 02:51 — sinal de conta já comprometida.'},
+      {q:'O log AXUR mostra cookies de sessão do Outlook Web Access capturados pelo RedLine Stealer. Além de trocar a senha, o que é ESSENCIAL fazer?',
+       opts:['Trocar a senha é suficiente — os cookies expiram sozinhos','Revogar TODOS os tokens de sessão e refresh tokens no Azure AD (cmdlet: Revoke-AzureADUserAllRefreshToken) — trocar a senha NÃO invalida cookies e tokens OAuth ativos que o atacante já possui','Reinstalar o Windows no computador do usuário','Desabilitar o Outlook Web Access para todos os usuários'],
+       ans:1,xp:45,
+       exp:'Session hijacking via stolen cookies: o atacante pode manter acesso ao email do usuário mesmo após troca de senha, usando os cookies capturados pelo infostealer. Solução: revogar todos os tokens de refresh no IdP (Azure AD, Okta, etc.). No Azure AD: Revoke-AzureADUserAllRefreshToken ou via portal Users → Revoke Sessions. Também verificar: regras de inbox, delegações, apps OAuth autorizados.'}
+    ]
+  },
+  {
+    id:'cu2', name:'Fernanda Cristina Souza', email:'f.souza@corpdemo.com.br',
+    dept:'RH', role:'Gerente de Recursos Humanos', risk:'ALTO',
+    xdr:{
+      lastPassChange:'2022-08-10', passAge:666, riskScore:71,
+      mfa:true, lastLogin:'2024-06-07 17:22 UTC', loginHost:'LAPTOP-HR-04',
+      loginIp:'10.0.3.14', loginGeo:'Rede interna',
+      recentLogins:[
+        {time:'2024-06-07 17:22',ip:'10.0.3.14',host:'LAPTOP-HR-04',status:'success',geo:'Rede interna'},
+        {time:'2024-06-06 09:11',ip:'10.0.3.14',host:'LAPTOP-HR-04',status:'success',geo:'Rede interna'},
+        {time:'2024-06-04 20:44',ip:'179.213.8.22',host:'N/A',status:'mfa_blocked',geo:'Campinas, BR (ext.) — MFA BLOQUEOU'}
+      ]
+    },
+    axur:{
+      found:true, totalLeaks:2, darkwebMentions:0,
+      leaks:[
+        {db:'EcommBR-Ficticio-2023',date:'2023-09',type:'email + hash MD5 não-salgado',severity:'warn',detail:'E-commerce fictício. Hash MD5 sem salt é facilmente quebrável com rainbow tables. Senha provável: Fernanda@2022'},
+        {db:'ComboList-Forum-BR-2023-05',date:'2023-05',type:'email + senha deduzida',severity:'warn',detail:'Aparece na lista com senha deduzida de hash MD5: Fernanda@2022. Reutilização de senha detectada.'}
+      ],
+      pastes:[]
+    },
+    cloud:{
+      onedrive:[
+        {item:'Admissoes_Candidatos_2024.xlsx',shared:'Apenas CorpDemo',risk:'ok',url:''}
+      ],
+      mailRules:[],
+      gdrive:[
+        {item:'Dados_Funcionarios_Salarios.gsheet',shared:'Público (qualquer pessoa)',risk:'crit',url:'https://docs.google.com/…demo…'}
+      ]
+    },
+    hibp:{
+      breaches:[
+        {name:'EcommBR-Demo-2023',date:'2023-09-18',pwned:true,dataTypes:['Endereços de email','Hashes MD5 de senha']},
+        {name:'ComboList-Demo-2023',date:'2023-05-12',pwned:true,dataTypes:['Endereços de email','Senhas deduzidas de hash']}
+      ]
+    },
+    quiz:[
+      {q:'Fernanda tem MFA ativo e o login externo às 20:44 foi bloqueado pelo MFA. Isso significa que a conta está segura?',
+       opts:['Sim — MFA bloqueou o acesso, não há risco','Não completamente. O atacante tem a senha (via hash MD5 quebrado) e tentará novamente. Ações necessárias: forçar troca de senha + investigar se a senha é reutilizada em outros sistemas internos sem MFA (VPN, sistemas legados)','Sim — bastará monitorar por mais 30 dias','O MFA é suficiente sem necessidade de trocar a senha'],
+       ans:1,xp:35,
+       exp:'MFA bloqueou ESTE acesso específico, mas o atacante possui a senha. Riscos remanescentes: (1) sistemas internos sem MFA (VPN L2TP, RDP interno, sistemas legados), (2) reutilização da senha em outros serviços pessoais do usuário, (3) ataques de SIM swap para bypass do MFA por SMS. Ação: forçar reset + auditar todos os sistemas que a conta acessa + verificar se há MFA robusto (TOTP/FIDO2) em todos os pontos de acesso.'},
+      {q:'AXUR detectou reutilização de senha via hash MD5 quebrado. Por que hashes MD5 são considerados inseguros para senhas?',
+       opts:['MD5 é inseguro apenas para arquivos grandes — para senhas curtas é aceitável','MD5 não tem salt por padrão e é extremamente rápido de calcular — GPUs modernas testam bilhões de hashes MD5 por segundo. Sem salt, rainbow tables pré-computadas quebram senhas comuns em segundos','MD5 foi banido apenas pelo NIST, outros órgãos ainda o aceitam','MD5 é inseguro apenas se a senha tiver menos de 8 caracteres'],
+       ans:1,xp:35,
+       exp:'MD5 para senhas: (1) Sem salt = rainbow tables funcionam diretamente, (2) GPU moderna (RTX 4090) testa ~164 bilhões de hashes MD5/segundo, (3) Senha como "Fernanda@2022" seria quebrada em segundos com hashcat/wordlist. Algoritmos adequados para senhas: bcrypt (custo configurável), Argon2id (vencedor PHC), scrypt — todos têm salt embutido e custo computacional alto por design.'}
+    ]
+  },
+  {
+    id:'cu3', name:'Ricardo Alves Pereira', email:'r.alves@corpdemo.com.br',
+    dept:'TI', role:'Analista de Suporte N2', risk:'MÉDIO',
+    xdr:{
+      lastPassChange:'2023-11-20', passAge:200, riskScore:42,
+      mfa:true, lastLogin:'2024-06-08 08:15 UTC', loginHost:'SRV-HELP-01',
+      loginIp:'10.0.1.11', loginGeo:'Rede interna',
+      recentLogins:[
+        {time:'2024-06-08 08:15',ip:'10.0.1.11',host:'SRV-HELP-01',status:'success',geo:'Rede interna'},
+        {time:'2024-06-07 08:02',ip:'10.0.1.11',host:'SRV-HELP-01',status:'success',geo:'Rede interna'},
+        {time:'2024-06-06 07:58',ip:'10.0.1.11',host:'SRV-HELP-01',status:'success',geo:'Rede interna'}
+      ]
+    },
+    axur:{
+      found:true, totalLeaks:1, darkwebMentions:0,
+      leaks:[
+        {db:'NetCommerce-BR-Dump-2022',date:'2022-11',type:'email + hash bcrypt',severity:'info',detail:'Hash bcrypt $2y$ exposto. Sem senha em texto claro. Risco baixo se senha forte. Hash não foi quebrado até o momento.'}
+      ],
+      pastes:[]
+    },
+    cloud:{
+      onedrive:[],
+      mailRules:[],
+      gdrive:[]
+    },
+    hibp:{
+      breaches:[
+        {name:'NetCommerce-Demo-2022',date:'2022-11-03',pwned:true,dataTypes:['Endereços de email','Hashes bcrypt de senha']}
+      ]
+    },
+    quiz:[
+      {q:'Ricardo aparece em 1 breach com hash bcrypt exposto, sem quebra confirmada. Qual ação é adequada e proporcional ao risco?',
+       opts:['Nenhuma ação — bcrypt é inquebrável','Revogar acesso e suspender a conta preventivamente por 30 dias','Notificar o usuário, recomendar troca de senha (baixa urgência), verificar se a senha é única para este serviço. Monitorar se o hash aparecer quebrado em futuras consultas AXUR/HIBP','Ignorar completamente — apenas 1 breach com hash é insignificante'],
+       ans:2,xp:30,
+       exp:'Risco proporcional: bcrypt exposto SEM quebra confirmada = risco baixo mas existente. Ações proporcionais: (1) Notificar o usuário para trocar senha preventivamente, (2) Confirmar que a senha é única (não reutilizada em outros sistemas), (3) Adicionar ao monitoramento contínuo AXUR, (4) Verificar em 30 dias se o hash apareceu quebrado em dumps subsequentes. Não é necessário revogar sessões imediatamente.'}
+    ]
+  },
+  {
+    id:'cu4', name:'Ana Lima Santos', email:'ana.lima@corpdemo.com.br',
+    dept:'Jurídico', role:'Advogada Corporativa', risk:'BAIXO',
+    xdr:{
+      lastPassChange:'2024-01-08', passAge:151, riskScore:12,
+      mfa:true, lastLogin:'2024-06-08 09:05 UTC', loginHost:'LAPTOP-LEGAL-02',
+      loginIp:'10.0.4.5', loginGeo:'Rede interna',
+      recentLogins:[
+        {time:'2024-06-08 09:05',ip:'10.0.4.5',host:'LAPTOP-LEGAL-02',status:'success',geo:'Rede interna'},
+        {time:'2024-06-07 09:01',ip:'10.0.4.5',host:'LAPTOP-LEGAL-02',status:'success',geo:'Rede interna'},
+        {time:'2024-06-05 08:58',ip:'10.0.4.5',host:'LAPTOP-LEGAL-02',status:'success',geo:'Rede interna'}
+      ]
+    },
+    axur:{ found:false, totalLeaks:0, darkwebMentions:0, leaks:[], pastes:[] },
+    cloud:{ onedrive:[], mailRules:[], gdrive:[] },
+    hibp:{ breaches:[] },
+    quiz:[
+      {q:'Ana não aparece em nenhum vazamento e tem postura de segurança exemplar. O que o analista deve registrar neste caso?',
+       opts:['Nada — usuário sem achados não precisa de documentação','Fechar como "sem risco" sem registrar','Documentar o resultado "limpo" na ferramenta de GRC/ITSM com data e fontes consultadas — o registro de que a investigação foi feita e o resultado negativo é evidência de due diligence para auditorias e conformidade','Marcar o usuário como suspeito por não ter vazamentos — estatisticamente incomum'],
+       ans:2,xp:25,
+       exp:'Resultado negativo também precisa ser documentado. Importância: (1) Evidência de due diligence para auditorias (ISO 27001, SOC 2, LGPD), (2) Baseline para futuras comparações, (3) Demonstra que o processo de monitoramento foi executado sistematicamente, (4) Histórico útil se a conta for comprometida no futuro. Registrar: data, fontes consultadas (XDR versão, AXUR DB date, HIBP API date), resultado, analista responsável.'}
+    ]
+  },
+  {
+    id:'cu5', name:'Marcos Vieira Tavares', email:'m.vieira@corpdemo.com.br',
+    dept:'Comercial', role:'Diretor Comercial', risk:'ALTO',
+    xdr:{
+      lastPassChange:'2022-04-11', passAge:789, riskScore:78,
+      mfa:false, lastLogin:'2024-06-08 07:44 UTC', loginHost:'LAPTOP-EXEC-03',
+      loginIp:'10.0.2.33', loginGeo:'Rede interna',
+      recentLogins:[
+        {time:'2024-06-08 07:44',ip:'10.0.2.33',host:'LAPTOP-EXEC-03',status:'success',geo:'Rede interna'},
+        {time:'2024-06-07 22:01',ip:'186.215.4.88',host:'N/A',status:'success',geo:'Fortaleza, BR (ext. — sem MFA)'},
+        {time:'2024-06-06 09:15',ip:'10.0.2.33',host:'LAPTOP-EXEC-03',status:'success',geo:'Rede interna'},
+        {time:'2024-06-05 23:14',ip:'186.215.4.88',host:'N/A',status:'success',geo:'Fortaleza, BR (ext. — sem MFA)'}
+      ]
+    },
+    axur:{
+      found:true, totalLeaks:2, darkwebMentions:1,
+      leaks:[
+        {db:'RedLine-StealerLog-2024-Q1',date:'2024-01',type:'email + senha + cookies de sessão + autofill do navegador',severity:'crit',detail:'Log de RedLine Stealer. Senha capturada: Marcos@CorpDemo2022! | Cookies do CRM e email capturados. Autofill com dados bancários corporativos também no log.'},
+        {db:'EcommBR-Ficticio-2023',date:'2023-09',type:'email + dados cadastrais',severity:'info',detail:'Plataforma fictícia de e-commerce. Email e dados de cadastro expostos. Sem senha neste leak.'}
+      ],
+      pastes:[{site:'Dark Web — fórum fictício ThreatDB',date:'2024-02-28',lines:'Credenciais do CRM corpdemo confirmadas em pasta vendida por U$50'}]
+    },
+    cloud:{
+      onedrive:[
+        {item:'Proposta_Comercial_Cliente_XYZ.pdf',shared:'Qualquer pessoa com o link',risk:'warn',url:'https://corpdemo-my.sharepoint.com/…'}
+      ],
+      mailRules:[
+        {rule:'Encaminhar de: @clienteabc.com.br para',dest:'mvieira.pessoal@gmail-demo.com',created:'2024-06-07 22:05 UTC',risk:'crit'}
+      ],
+      gdrive:[]
+    },
+    hibp:{
+      breaches:[
+        {name:'RedLine-Log-Demo-2024',date:'2024-01-15',pwned:true,dataTypes:['Endereços de email','Senhas em texto claro','Cookies de sessão','Dados de formulário autofill']},
+        {name:'EcommBR-Demo-2023',date:'2023-09-18',pwned:true,dataTypes:['Endereços de email','Dados cadastrais']}
+      ]
+    },
+    quiz:[
+      {q:'Marcos é Diretor Comercial, não tem MFA ativo, e teve login externo bem-sucedido às 22:01 seguido de criação de regra de forwarding de email. O que isso caracteriza?',
+       opts:['Login normal de home office seguido de configuração pessoal de email','Muito provavelmente conta comprometida: login externo sem MFA + regra de forwarding criada minutos depois = padrão clássico de Business Email Compromise (BEC). O atacante está redirecionando emails de clientes para endereço externo','Comportamento suspeito mas baixo risco por ser Diretor','O forwarding foi criado pelo próprio usuário para trabalhar remotamente'],
+       ans:1,xp:50,
+       exp:'Business Email Compromise (BEC) - T1586.002: padrão exato: (1) Acesso externo à conta executiva (sem MFA = fácil), (2) Criação de inbox rule de forwarding minutos após login = atacante quer monitorar comunicações, (3) Diretor comercial = acesso a propostas, contratos, dados bancários de clientes. Impacto financeiro potencial altíssimo. Ação IMEDIATA: revogar sessões, remover a regra de forwarding, notificar clientes afetados, envolver jurídico.'},
+      {q:'A conta de Marcos não tem MFA. Para um perfil executivo (C-level) com acesso a dados sensíveis e comunicações de clientes, como priorizar a implementação do MFA?',
+       opts:['MFA é opcional para executivos — eles têm exceção por produtividade','Implementar MFA adaptativo (contexto-aware): exigir MFA FIDO2/passkey para acessos externos e fora do horário comercial, mas simplificar para rede interna — equilíbrio entre segurança e experiência do usuário executivo','Aplicar MFA apenas para sistemas de TI — não para email e CRM','MFA por SMS é suficiente para nível executivo'],
+       ans:1,xp:40,
+       exp:'MFA para executivos (C-level, Board): (1) Prioridade MÁXIMA — são os alvos mais valiosos de BEC e spear phishing, (2) FIDO2/passkeys são superiores a OTP/SMS (imunes a phishing e SIM swap), (3) Conditional Access/Adaptive MFA equilibra segurança e UX: MFA simplificado na rede interna, MFA forte para acesso externo. Resistência de executivos a MFA deve ser escalada como risco aceito documentado — nunca deixada sem resolução.'}
+    ]
+  }
+];
+
+let ciSelectedUser = null;
+let ciActiveStep = 'xdr';
+const ciStepOrder = ['xdr','axur','cloud','hibp','actions'];
+
+function renderCiUserList(){
+  const riskClass = {CRÍTICO:'risk-crit',ALTO:'risk-alto',MÉDIO:'risk-med',BAIXO:'risk-low'};
+  const riskIcon = {CRÍTICO:'🔴',ALTO:'🟠',MÉDIO:'🟡',BAIXO:'🟢'};
+  document.getElementById('ci-user-list').innerHTML = CI_USERS.map(u=>`
+    <div class="ci-user-row ${ciSelectedUser===u.id?'selected':''}" onclick="openCiUser('${u.id}')">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${u.name}</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:1px;">${u.email}</div>
+        <div style="font-size:10px;color:var(--muted);">${u.dept}</div>
+      </div>
+      <div class="${riskClass[u.risk]}">${riskIcon[u.risk]} ${u.risk}</div>
+    </div>`).join('');
+}
+
+function openCiUser(uid){
+  ciSelectedUser = uid;
+  ciActiveStep = 'xdr';
+  renderCiUserList();
+  renderCiStep();
+}
+
+function renderCiStep(){
+  const u = CI_USERS.find(x=>x.id===ciSelectedUser);
+  if(!u) return;
+  const right = document.getElementById('ci-right');
+
+  // step bar
+  const stepDefs = [
+    {id:'xdr',  label:'🔭 1. Trend XDR',  logo:'xdr'},
+    {id:'axur', label:'🔍 2. AXUR',        logo:'axur'},
+    {id:'cloud',label:'☁️ 3. Cloud Exposure',logo:'cloud'},
+    {id:'hibp', label:'🔓 4. HaveIBeenPwned',logo:'hibp'},
+    {id:'actions',label:'📋 5. Ações',     logo:'act'}
+  ];
+  const stepBar = stepDefs.map(s=>`
+    <div class="ci-step ${s.id===ciActiveStep?'ci-active':''}" onclick="ciGoStep('${s.id}')">${s.label}</div>`).join('');
+
+  let content = '';
+  const key = 'ci_'+u.id;
+  if(!SPEC_QUIZ_STATE[key]) SPEC_QUIZ_STATE[key]={idx:0,answered:false};
+
+  if(ciActiveStep==='xdr'){
+    const x = u.xdr;
+    const passOld = x.passAge > 365;
+    const loginRisk = x.recentLogins.some(l=>l.status==='success'&&l.geo.includes('ext.'));
+    content = `
+      <div class="ci-platform-hdr">
+        <span class="ci-logo ci-logo-xdr">Trend Micro XDR</span>
+        <span style="font-size:12px;font-weight:600;">Account Risk View — ${u.email}</span>
+        <span class="tag ${x.riskScore>=70?'tag-red':x.riskScore>=40?'tag-amber':'tag-green'}" style="margin-left:auto;">Risk Score: ${x.riskScore}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div class="breach-card ${passOld?'crit':'ok'}">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">ÚLTIMA TROCA DE SENHA</div>
+          <div style="font-size:13px;font-weight:600;color:${passOld?'var(--red)':'var(--green)'};">${x.lastPassChange}</div>
+          <div style="font-size:11px;color:${passOld?'var(--red)':'var(--muted)'};">${x.passAge} dias atrás ${passOld?'⚠ VENCIDA':''}</div>
+        </div>
+        <div class="breach-card ${!x.mfa?'crit':'ok'}">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">AUTENTICAÇÃO MFA</div>
+          <div style="font-size:13px;font-weight:600;color:${x.mfa?'var(--green)':'var(--red)'};">${x.mfa?'✅ ATIVO':'❌ INATIVO'}</div>
+          <div style="font-size:11px;color:var(--muted);">${x.mfa?'MFA habilitado':'Sem 2º fator!'}</div>
+        </div>
+        <div class="breach-card ${loginRisk?'crit':'ok'}">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">ÚLTIMO LOGIN</div>
+          <div style="font-size:11px;font-weight:600;">${x.lastLogin}</div>
+          <div style="font-size:10px;color:var(--muted);">${x.loginGeo}</div>
+        </div>
+      </div>
+      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Histórico Recente de Logins</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:16px;">
+        ${x.recentLogins.map(l=>`
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 14px;border-bottom:1px solid rgba(33,38,45,.5);font-size:11px;">
+            <span class="mono" style="color:var(--muted);flex-shrink:0;width:120px;">${l.time}</span>
+            <span class="tag ${l.status==='success'?l.geo.includes('ext')?'tag-amber':'tag-green':l.status==='mfa_blocked'?'tag-blue':'tag-red'}" style="font-size:9px;flex-shrink:0;">${l.status==='success'?'OK':l.status==='mfa_blocked'?'MFA BLOCK':'FALHA'}</span>
+            <span class="mono" style="color:var(--blue);flex-shrink:0;">${l.ip}</span>
+            <span style="color:var(--muted);flex:1;">${l.geo}</span>
+          </div>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <button class="btn btn-red" onclick="ciAction('force_reset','${u.id}')" style="font-size:11px;padding:6px 14px;">🔒 Forçar Reset de Senha</button>
+        <button class="btn btn-amber" onclick="ciAction('revoke_sessions','${u.id}')" style="font-size:11px;padding:6px 14px;">⛔ Revogar Todas Sessões</button>
+        <button class="btn btn-blue" onclick="ciAction('enable_mfa','${u.id}')" style="font-size:11px;padding:6px 14px;">🔑 Forçar MFA</button>
+      </div>
+      <div id="sqwrap-${key}" >${buildSpecQuiz('ci',u.id,u.quiz)}</div>`;
+  }
+  else if(ciActiveStep==='axur'){
+    const a = u.axur;
+    content = `
+      <div class="ci-platform-hdr">
+        <span class="ci-logo ci-logo-axur">AXUR</span>
+        <span style="font-size:12px;font-weight:600;">Credential Leak Monitoring — ${u.email}</span>
+        <span class="tag ${a.found?a.totalLeaks>=3?'tag-red':'tag-amber':'tag-green'}" style="margin-left:auto;">${a.found?a.totalLeaks+' vazamentos':'LIMPO'}</span>
+      </div>
+      <div class="ci-search-box">
+        <input type="text" value="${u.email}" readonly>
+        <button class="btn btn-ghost" onclick="axurSearch('${u.id}')" style="font-size:11px;padding:6px 16px;border-color:#ffb74d;color:#ffb74d;">🔍 Buscar</button>
+      </div>
+      ${!a.found?`<div class="breach-card ok"><strong>✅ Nenhum vazamento encontrado</strong><p style="font-size:12px;color:var(--muted);margin-top:6px;">Email não identificado em nenhuma base de dados de vazamentos monitorada pela AXUR.</p></div>`:''}
+      ${a.leaks.length?`<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Bases de Dados Onde o Email Foi Encontrado</div>`:''}
+      ${a.leaks.map(l=>`
+        <div class="breach-card ${l.severity}">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:6px;">
+            <span style="font-size:12px;font-weight:600;color:${l.severity==='crit'?'var(--red)':l.severity==='warn'?'var(--amber)':'var(--blue)'};">${l.db}</span>
+            <span style="font-size:10px;color:var(--muted);">${l.date}</span>
+          </div>
+          <div style="font-size:11px;color:var(--amber);margin-bottom:4px;">📦 ${l.type}</div>
+          <div style="font-size:11px;color:#adbac7;line-height:1.5;">${l.detail}</div>
+        </div>`).join('')}
+      ${a.pastes.length?`<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin:12px 0 8px;">Dark Web & Paste Sites</div>`:''}
+      ${a.pastes.map(p=>`
+        <div class="breach-card crit">
+          <div style="font-size:11px;font-weight:600;color:var(--red);margin-bottom:4px;">⚠ ${p.site}</div>
+          <div style="font-size:11px;color:var(--muted);">${p.date} · ${p.lines}</div>
+        </div>`).join('')}
+      ${a.darkwebMentions?`<div class="warn-box">⚠ ${a.darkwebMentions} menção(ões) na dark web detectadas. Dados podem estar circulando ativamente em canais privados.</div>`:''}`;
+  }
+  else if(ciActiveStep==='cloud'){
+    const c = u.cloud;
+    const hasIssues = c.onedrive.some(x=>x.risk==='crit'||x.risk==='warn') || c.mailRules.length || c.gdrive.some(x=>x.risk==='crit');
+    content = `
+      <div class="ci-platform-hdr">
+        <span class="ci-logo ci-logo-cloud">Cloud Exposure</span>
+        <span style="font-size:12px;font-weight:600;">Microsoft 365 + Google Workspace — ${u.email}</span>
+        <span class="tag ${hasIssues?'tag-red':'tag-green'}" style="margin-left:auto;">${hasIssues?'EXPOSIÇÃO DETECTADA':'SEM EXPOSIÇÃO'}</span>
+      </div>
+      ${c.mailRules.length?`
+        <div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;margin-bottom:8px;">⚠ Regras de Encaminhamento de Email (CRÍTICO)</div>
+        ${c.mailRules.map(r=>`
+          <div class="breach-card crit">
+            <div style="font-size:12px;font-weight:600;color:var(--red);margin-bottom:6px;">📧 ${r.rule}</div>
+            <div style="font-size:11px;margin-bottom:3px;"><strong>Destino:</strong> <span class="mono" style="color:var(--red);">${r.dest}</span></div>
+            <div style="font-size:11px;color:var(--muted);">Criada em: ${r.created}</div>
+            <button onclick="ciAction('remove_rule','${u.id}')" class="btn btn-red" style="margin-top:8px;font-size:10px;padding:4px 12px;">🗑 Remover Regra</button>
+          </div>`).join('')}`:''}
+      ${c.onedrive.length?`
+        <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px;margin-top:12px;">OneDrive — Arquivos Compartilhados</div>
+        ${c.onedrive.map(f=>`
+          <div class="breach-card ${f.risk}">
+            <div style="font-size:12px;font-weight:600;margin-bottom:4px;">📁 ${f.item}</div>
+            <div style="font-size:11px;color:${f.risk==='crit'?'var(--red)':f.risk==='warn'?'var(--amber)':'var(--green)'};">${f.shared}</div>
+            ${f.url?`<button onclick="ciAction('revoke_share','${u.id}')" class="btn btn-amber" style="margin-top:8px;font-size:10px;padding:4px 12px;">🔒 Revogar Compartilhamento</button>`:''}
+          </div>`).join('')}`:''}
+      ${c.gdrive.length?`
+        <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px;margin-top:12px;">Google Drive — Arquivos Públicos</div>
+        ${c.gdrive.map(f=>`
+          <div class="breach-card ${f.risk}">
+            <div style="font-size:12px;font-weight:600;margin-bottom:4px;">📊 ${f.item}</div>
+            <div style="font-size:11px;color:var(--red);">${f.shared}</div>
+            <button onclick="ciAction('revoke_gdrive','${u.id}')" class="btn btn-red" style="margin-top:8px;font-size:10px;padding:4px 12px;">🔒 Revogar Acesso Público</button>
+          </div>`).join('')}`:''}
+      ${!hasIssues?`<div class="breach-card ok"><strong>✅ Sem exposição detectada</strong><p style="font-size:12px;color:var(--muted);margin-top:4px;">Nenhum compartilhamento público suspeito ou regra de encaminhamento encontrada.</p></div>`:''}`;
+  }
+  else if(ciActiveStep==='hibp'){
+    const h = u.hibp;
+    content = `
+      <div class="ci-platform-hdr">
+        <span class="ci-logo ci-logo-hibp">HaveIBeenPwned</span>
+        <span style="font-size:12px;font-weight:600;">Breach History Lookup — ${u.email}</span>
+        <span class="tag ${h.breaches.length>=3?'tag-red':h.breaches.length>=1?'tag-amber':'tag-green'}" style="margin-left:auto;">${h.breaches.length} breach(es)</span>
+      </div>
+      <div class="ci-search-box">
+        <input type="text" value="${u.email}" readonly>
+        <button class="btn btn-ghost" onclick="hibpSearch('${u.id}')" style="font-size:11px;padding:6px 16px;border-color:#ce93d8;color:#ce93d8;">🔓 Verificar</button>
+      </div>
+      ${!h.breaches.length?`
+        <div class="breach-card ok" style="text-align:center;padding:24px;">
+          <div style="font-size:32px;margin-bottom:8px;">✅</div>
+          <strong>Good news — no pwnage found!</strong>
+          <p style="font-size:12px;color:var(--muted);margin-top:4px;">Este endereço de email não aparece em nenhum breach conhecido.</p>
+        </div>`:''}
+      ${h.breaches.length?`
+        <div class="breach-card crit" style="text-align:center;padding:16px;margin-bottom:16px;">
+          <div style="font-size:28px;margin-bottom:6px;">☠️</div>
+          <strong style="color:var(--red);">Oh no — pwned!</strong>
+          <p style="font-size:12px;color:#adbac7;margin-top:4px;">Encontrado em <strong>${h.breaches.length}</strong> breach(es) de dados.</p>
+        </div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Breaches Identificados</div>
+        ${h.breaches.map(b=>`
+          <div class="breach-card warn" style="margin-bottom:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:6px;">
+              <span style="font-size:12px;font-weight:600;">${b.name}</span>
+              <span style="font-size:10px;color:var(--muted);">${b.date}</span>
+            </div>
+            <div style="font-size:11px;color:var(--muted);">Dados expostos: ${b.dataTypes.map(d=>`<span class="tag tag-amber" style="margin:2px;font-size:10px;">${d}</span>`).join('')}</div>
+            ${b.pwned?'<div style="font-size:10px;color:var(--red);margin-top:5px;">⚠ Senha possivelmente comprometida neste breach</div>':''}
+          </div>`).join('')}`:''}`;
+  }
+  else if(ciActiveStep==='actions'){
+    const risk = u.risk;
+    const hasForward = u.cloud.mailRules.length > 0;
+    const hasClear = u.axur.leaks.some(l=>l.detail&&l.detail.includes('texto claro'));
+    const noMfa = !u.xdr.mfa;
+    content = `
+      <div class="ci-platform-hdr">
+        <span class="ci-logo ci-logo-act">Plano de Ação</span>
+        <span style="font-size:12px;font-weight:600;">Recomendações — ${u.name}</span>
+        <span class="tag ${risk==='CRÍTICO'?'tag-red':risk==='ALTO'?'tag-amber':risk==='MÉDIO'?'tag-blue':'tag-green'}" style="margin-left:auto;">Risco ${risk}</span>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px;">Ações ordenadas por urgência com base nos achados desta investigação.</div>
+      ${hasForward?`<div class="ci-action-item urgent"><div class="ci-action-num" style="background:rgba(248,81,73,.2);color:var(--red);">1</div><div><strong style="color:var(--red);">URGENTE — Remover regra de forwarding de email</strong><br><span style="font-size:11px;color:#adbac7;">Regra suspeita criada após login externo. Remoção imediata via M365 Admin Center → Exchange → Mail Flow Rules ou PowerShell: Remove-InboxRule.</span></div></div>`:''}
+      ${hasClear?`<div class="ci-action-item urgent"><div class="ci-action-num" style="background:rgba(248,81,73,.2);color:var(--red);">!</div><div><strong style="color:var(--red);">URGENTE — Revogar todas as sessões e tokens OAuth</strong><br><span style="font-size:11px;color:#adbac7;">Senha em texto claro exposta = atacante pode ter sessão ativa. PowerShell: Revoke-AzureADUserAllRefreshToken -ObjectId [UPN]</span></div></div>`:''}
+      <div class="ci-action-item ${risk==='CRÍTICO'||risk==='ALTO'?'urgent':'high'}"><div class="ci-action-num" style="background:rgba(248,81,73,.2);color:var(--red);">A</div><div><strong>Forçar reset de senha imediato</strong><br><span style="font-size:11px;color:#adbac7;">Exigir nova senha com critério mínimo: 16+ caracteres, complexidade, sem reutilização das últimas 10. Verificar política de expiração atual.</span></div></div>
+      ${noMfa?`<div class="ci-action-item urgent"><div class="ci-action-num" style="background:rgba(248,81,73,.2);color:var(--red);">B</div><div><strong style="color:var(--red);">Habilitar MFA OBRIGATÓRIO</strong><br><span style="font-size:11px;color:#adbac7;">Sem MFA ativo, o reset de senha é insuficiente. Configurar Conditional Access no Azure AD com MFA obrigatório para todos os acessos externos. Recomendado: FIDO2/Passkey.</span></div></div>`:''}
+      <div class="ci-action-item high"><div class="ci-action-num" style="background:rgba(240,136,62,.2);color:var(--orange);">C</div><div><strong>Revogar compartilhamentos públicos do OneDrive/GDrive</strong><br><span style="font-size:11px;color:#adbac7;">Verificar todos os arquivos com "Qualquer pessoa com o link" e converter para compartilhamento interno ou remover. M365: SharePoint Admin → Content Services → Policies.</span></div></div>
+      <div class="ci-action-item medium"><div class="ci-action-num" style="background:rgba(210,153,34,.2);color:var(--amber);">D</div><div><strong>Adicionar ao monitoramento contínuo AXUR</strong><br><span style="font-size:11px;color:#adbac7;">Configurar alerta em tempo real no AXUR para qualquer nova ocorrência deste email em bases de vazamento, pastes e dark web.</span></div></div>
+      <div class="ci-action-item medium"><div class="ci-action-num" style="background:rgba(210,153,34,.2);color:var(--amber);">E</div><div><strong>Documentar no sistema de GRC/ITSM</strong><br><span style="font-size:11px;color:#adbac7;">Registrar: data da investigação, fontes consultadas, achados, ações tomadas, analista responsável. Essencial para conformidade LGPD e auditorias ISO 27001.</span></div></div>
+      <div class="ci-action-item done"><div class="ci-action-num" style="background:rgba(63,185,80,.15);color:var(--green);">F</div><div><strong>Comunicar o usuário e o gestor direto</strong><br><span style="font-size:11px;color:#adbac7;">Informar o usuário sobre o risco sem exposição desnecessária dos detalhes técnicos. Orientar sobre phishing, senhas únicas e uso de gerenciador de senhas.</span></div></div>
+      <div style="margin-top:16px;"><button onclick="ciGenerateReport('${u.id}')" class="btn btn-green" style="width:100%;padding:10px;font-size:12px;">📄 Gerar Relatório de Investigação</button></div>`;
+  }
+
+  right.innerHTML = `
+    <div class="ci-step-bar">${stepBar}</div>
+    <div class="ci-content">${content}</div>`;
+
+  // re-register CI quiz in the global map
+  if(!_TAN_QUIZ_MAP) return;
+  _TAN_QUIZ_MAP['ci_'+ciSelectedUser] = u.quiz || [];
+}
+
+function ciGoStep(step){ ciActiveStep=step; renderCiStep(); }
+
+function axurSearch(uid){ addXP(15); modal('AXUR — Busca Concluída','Consulta realizada na base AXUR de monitoramento de dark web, paste sites, fóruns clandestinos e canais do Telegram.\n\nResultados carregados abaixo com data de cada aparição e tipo de dado exposto.','🔍',0); }
+function hibpSearch(uid){ addXP(15); modal('HaveIBeenPwned — Consulta','Verificação realizada via API do HaveIBeenPwned (hibp.com). Os resultados mostram todos os breaches públicos onde este email foi identificado.','🔓',0); }
+
+function ciAction(action, uid){
+  const msgs = {
+    force_reset:  ['Reset Forçado','Senha do usuário invalidada. Um email de reset foi enviado para o endereço corporativo + notificação ao gestor. Sessões existentes serão encerradas após confirmação do novo login.','🔒',30],
+    revoke_sessions:['Sessões Revogadas','Todos os tokens OAuth, refresh tokens e cookies de sessão foram revogados via Azure AD (Revoke-AzureADUserAllRefreshToken). O usuário precisará se autenticar novamente em todos os dispositivos.','⛔',25],
+    enable_mfa:   ['MFA Configurado','Conditional Access Policy criada: MFA obrigatório para este usuário em todos os acessos externos. Usuário será guiado pelo setup do Microsoft Authenticator no próximo login.','🔑',20],
+    remove_rule:  ['Regra Removida','Regra de encaminhamento maliciosa removida via Exchange Online Admin Center. Ação registrada no audit log do M365 para evidência forense.','🗑',35],
+    revoke_share: ['Compartilhamento Revogado','Link público do OneDrive desabilitado. Arquivo agora acessível apenas para usuários internos autenticados.','📁',15],
+    revoke_gdrive:['Acesso Google Drive Revogado','Arquivo convertido de "Público" para "Restrito — Apenas usuários do domínio @corpdemo.com.br com permissão explícita".','📊',15]
+  };
+  const m = msgs[action]||['Ação','Executada com sucesso.','✅',10];
+  modal(m[0],m[1],m[2],m[3]);
+}
+
+function ciGenerateReport(uid){
+  const u = CI_USERS.find(x=>x.id===uid);
+  goto('report');
+  setTimeout(()=>{
+    const d = new Date().toISOString().slice(0,10);
+    document.getElementById('r-id').value = 'INC-CI-'+d+'-'+uid.toUpperCase();
+    document.getElementById('r-date').value = d+' — Investigação de Vazamento';
+    document.getElementById('r-sev').value = u.risk==='CRÍTICO'?'Crítica':u.risk==='ALTO'?'Alta':u.risk==='MÉDIO'?'Média':'Baixa';
+    document.getElementById('r-type').value = 'Vazamento de Dados';
+    document.getElementById('r-systems').value = `${u.email} (${u.dept} — ${u.role})`;
+    document.getElementById('r-mitre').value = 'T1078 (Valid Accounts), T1586.002 (BEC), T1114.003 (Email Forwarding Rule)';
+    document.getElementById('r-iocs').value = `Email: ${u.email}\nVazamentos: ${u.axur.totalLeaks} bases\nRisco: ${u.risk}`;
+    document.getElementById('r-summary').value = `Investigação de vazamento de credenciais para ${u.name} (${u.email}), ${u.role} do departamento de ${u.dept}. Risco classificado como ${u.risk}. ${u.axur.totalLeaks} ocorrências identificadas em bases de vazamento via AXUR. ${!u.xdr.mfa?'MFA inativo — risco elevado.':''} ${u.cloud.mailRules.length?'Regra de encaminhamento de email suspeita detectada e removida.':''}`;
+    addXP(40);
+  }, 300);
+}
+
+/* ── CI RANDOM GENERATOR ── */
+const CI_GEN_NAMES = [
+  ['Juliana','Ferreira','juliana.ferreira','TI','Desenvolvedora Full Stack'],
+  ['Bruno','Carvalho','b.carvalho','Operações','Analista de Operações'],
+  ['Camila','Santos','c.santos','Marketing','Coordenadora de Marketing'],
+  ['Diego','Rocha','d.rocha','Financeiro','Gerente Financeiro'],
+  ['Priscila','Lima','p.lima','RH','Analista de RH'],
+  ['Thiago','Oliveira','t.oliveira','TI','Engenheiro DevOps'],
+  ['Luciana','Costa','l.costa','Jurídico','Assistente Jurídico'],
+  ['Rafael','Almeida','r.almeida','Comercial','Executivo de Vendas']
+];
+const CI_GEN_LEAKS = [
+  {db:'ComboList-Forum-BR-Demo',type:'email + senha em texto claro',sev:'crit'},
+  {db:'EcommFicticio-2023-Demo',type:'email + hash bcrypt',sev:'warn'},
+  {db:'RedLine-Stealer-Demo-2024',type:'email + senha + cookies',sev:'crit'},
+  {db:'HealthPlatform-Demo-2022',type:'email + dados cadastrais',sev:'info'},
+  {db:'NetShop-Demo-Dump-2021',type:'email + hash MD5',sev:'warn'}
+];
+let ciGenCounter = 10;
+function ciGenRandom(){
+  const [fn,ln,em,dept,role] = CI_USERS[0].dept !== undefined
+    ? CI_GEN_NAMES[ciGenCounter % CI_GEN_NAMES.length]
+    : CI_GEN_NAMES[0];
+  ciGenCounter++;
+  const idx = ciGenCounter % CI_GEN_NAMES.length;
+  const [firstName,lastName,emailPfx,department,jobRole] = CI_GEN_NAMES[idx];
+  const numLeaks = Math.floor(Math.random()*3)+1;
+  const leaks = Array(numLeaks).fill(0).map((_,i)=>({...CI_GEN_LEAKS[i%CI_GEN_LEAKS.length],date:'202'+Math.floor(Math.random()*3+1)+'-'+String(Math.floor(Math.random()*12+1)).padStart(2,'0'),detail:'Credencial encontrada em base fictícia para fins de treinamento.'}));
+  const riskLevels=['MÉDIO','ALTO','CRÍTICO'];
+  const risk = leaks.some(l=>l.sev==='crit')?'CRÍTICO':numLeaks>=2?'ALTO':'MÉDIO';
+  const passAge = Math.floor(Math.random()*800+100);
+  const newUser = {
+    id:'cu_gen_'+ciGenCounter,
+    name:`${firstName} ${lastName}`,
+    email:`${emailPfx}@corpdemo.com.br`,
+    dept:department, role:jobRole, risk,
+    xdr:{ lastPassChange:'202'+Math.floor(Math.random()*3+1)+'-'+String(Math.floor(Math.random()*12+1)).padStart(2,'0')+'-15', passAge, riskScore:Math.floor(Math.random()*60+20), mfa:Math.random()>0.4, lastLogin:'2024-06-08 '+String(Math.floor(Math.random()*23)).padStart(2,'0')+':'+String(Math.floor(Math.random()*59)).padStart(2,'0')+' UTC', loginHost:'DESKTOP-GEN-'+ciGenCounter, loginIp:'10.0.'+Math.floor(Math.random()*5)+'.'+Math.floor(Math.random()*254), loginGeo:'Rede interna', recentLogins:[{time:'2024-06-08 08:00',ip:'10.0.1.'+Math.floor(Math.random()*254),host:'DESKTOP-GEN-'+ciGenCounter,status:'success',geo:'Rede interna'}] },
+    axur:{ found:numLeaks>0, totalLeaks:numLeaks, darkwebMentions:leaks.some(l=>l.sev==='crit')?1:0, leaks, pastes:[] },
+    cloud:{ onedrive:[], mailRules:[], gdrive:[] },
+    hibp:{ breaches: leaks.map(l=>({name:l.db,date:l.date,pwned:l.sev==='crit',dataTypes:['Endereços de email','Senhas']})) },
+    quiz:[{q:`${firstName} ${lastName} foi encontrada(o) em ${numLeaks} base(s) de vazamento. Qual é o primeiro passo do fluxo de investigação?`,opts:['Bloquear a conta imediatamente sem investigar','Iniciar pelo Trend XDR para verificar último login, idade da senha e status de MFA — contexto essencial antes de qualquer ação','Encaminhar para o RH sem investigar tecnicamente','Notificar o usuário antes de verificar os dados'],ans:1,xp:25,exp:'O fluxo correto inicia pelo XDR para obter contexto: (1) A senha foi trocada recentemente? (2) Houve login externo suspeito recente? (3) MFA está ativo? Somente com esse contexto é possível priorizar as ações corretamente. Um breach antigo com MFA ativo tem urgência diferente de um breach recente sem MFA.'}]
+  };
+  CI_USERS.push(newUser);
+  renderCiUserList();
+  openCiUser(newUser.id);
+  modal('Usuário Gerado!',`${firstName} ${lastName}\n${newUser.email}\n${department} — ${jobRole}\nRisco: ${risk} | ${numLeaks} vazamento(s) fictício(s)\n\nInvestigação aberta automaticamente.`,'⚡',0);
+}
+
 // ===================== INIT =====================
 window.onload=()=>{
   initCharts();
@@ -2793,6 +3433,7 @@ window.onload=()=>{
   renderQrList();
   renderTanEpList();
   renderTanAlertFeed();
+  renderCiUserList();
 };
 </script>
 </body>
